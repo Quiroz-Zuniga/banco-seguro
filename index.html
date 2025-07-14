@@ -1,13 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Banco Seguro</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <h1>Banco Seguro 🏦</h1>
+    <form id="forCuenta">
+      <input type="text" id="nombreTitular" placeholder="Nombre del Titular" required>
+      <select  id="tipoCuenta">
+        <option value="ahorro">Cuenta Ahorro</option>
+        <option value="corrient">Cuenta Corriente</option>
+      </select>
+      <button type="submit" >Crear Cuenta</button>
+    </form>
+
+    <div id="acciones" style="display:none;">
+      <h2 id="nombreCuenta"></h2>
+      <input type="number" id="cantidad" placeholder="Cantidad">
+      <button id="btnDepositar">Depositar</button>
+      <button id="btnRetirar">Retirar</button>
+      <button id="btnSaldo">Ver Saldo</button>
+      <button id="btnHistorial">Ver Historiar</button>
+    </div>
+
+    <div id="output"></div>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
