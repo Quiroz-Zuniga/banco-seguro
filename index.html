@@ -17,13 +17,31 @@
       <button type="submit" >Crear Cuenta</button>
     </form>
 
+    <form id="formAcceso">
+      <select id="selectCuentas"></select>
+      <button type="submit">Acceder</button>
+    </form>
+
     <div id="acciones" style="display:none;">
       <h2 id="nombreCuenta"></h2>
       <input type="number" id="cantidad" placeholder="Cantidad">
       <button id="btnDepositar">Depositar</button>
       <button id="btnRetirar">Retirar</button>
       <button id="btnSaldo">Ver Saldo</button>
+      <button id="mostrarTransferencias">Transferir</button>
       <button id="btnHistorial">Ver Historiar</button>
+    </div>
+
+    <div id="transferencias" style="display:none;">
+      <h3>Transferencia entre cuentas</h3>
+      <form id="forTransferir">
+        <label>Cuenta Origen</label>
+        <select id="cuentaOrigen"></select>
+        <label>Cuenta Destino</label>
+        <select id="cuentaDestino"></select>
+        <input type="number" id="cantidadTransferir" placeholder="Cantidad a Transferir">
+        <button id="btntransferir">Transferir</button>
+      </form>
     </div>
 
     <div id="output"></div>

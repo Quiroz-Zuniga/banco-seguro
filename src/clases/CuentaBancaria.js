@@ -4,7 +4,7 @@ export class CuentaBancaria {
 
     constructor(titular) {
         this.titular = titular;
-        console.log(`Cuenta creada para: ${this.titular}`)
+        return `Cuenta creadad para ${titular}`
     }
     depositar(cantidad) {
         if (cantidad > 0) {
@@ -22,24 +22,38 @@ export class CuentaBancaria {
                 console.warn("Fondos Insuficientes o cantidad invalidad")
             }
         }
-
-        verSaldo(){
-            console.log(`Saldo de ${this.titular}: $${this.#saldo}`)
-        }
-        verHistorial(){
-            console.log(`Historial de ${this.titular}: `);
-            this.#historial.forEach((item, i) => {
-                console.log(`${i + 1}. ${item.tipo} - $${item.cantidad} - ${item.fecha.toLocaleString()}`);
-            });
-        }
-        #registrarTransaccion(tipo,cantidad){
-            this.#historial.push({
-                tipo,
-                cantidad,
-                fecha: new Date()
-            });
-        }
+    verSaldo(){
+        return`Saldo de ${this.titular}: $${this.#saldo}`;
+    }
+    verHistorial(){
+        return this.#historial;
+    }
+    #registrarTransaccion(tipo,cantidad){
+        this.#historial.push({
+            tipo,
+            cantidad,
+            fecha: new Date()
+        });
+    }
     obtenerSaldo(){
         return this.#saldo;
+    }
+
+    transferir(destino,cantidad) {
+        if (!(destino instanceof CuentaBancaria)){
+            return "Cuenta Destino inválida."
+        }
+        if(cantidad <= 0 || isNaN(cantidad)) {
+            return "Cantidad inválida para transferir."
+        }
+        if(destino === this) {
+            return "no se puede tranferir a la misma cueta."
+        }
+        if(cantidad > this.obtenerSaldo()) {
+            return "Fondos insuficientes para transferir."
+        }
+        this.retirar(cantidad);
+        destino.depositar(cantidad);
+        return `se deposito $${cantidad} de $${this.titular} a ${destino.titular}`
     }
 }
